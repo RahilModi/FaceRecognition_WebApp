@@ -1,11 +1,28 @@
 <html>
-   <body>
-   <div class="container" style="width: 100%; margin-top: 200px; ">
-      <form style=" width: 30%; margin: 0 auto;" id="UID-form" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
-         <label style="font-weight: bold; margin-right: 10px;" for="name" >Student-Id </label><input id="name" type = "text" name = "Name" />
-         <input style="display: block; margin: 20px 0 0 120px ; padding: 5px 12px;" type = "submit" value = "submit" />
-      </form>
-     </div>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+		<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+
+		<script type="text/javascript" src="./templates/ng-file-upload-shim.js"></script>
+		<script type="text/javascript" src="./templates/ng-file-upload-shim.min.js"></script>
+		<script type="text/javascript" src="./templates/ng-file-upload.js"></script>
+		<script type="text/javascript" src="./templates/ng-file-upload.min.js"></script>
+		<script type="text/javascript" src="./templates/photoRecogApp.js"></script>
+		<script type="text/javascript" src="./templates/uploadController.js"></script>
+`
+
+		<title>Photo Recognition</title>
+	</head>
+   <body ng-app="photoRecogApp">
+	   <div ng-controller="authController">
+	   	  <div class="container" style="width: 100%; margin-top: 200px; ">
+	      <form style=" width: 30%; margin: 0 auto;" id="UID-form" ng-submit="authenticate()">
+	         <label style="font-weight: bold; margin-right: 10px;" for="name" >Student-Id </label>
+	         <input id="name" type = "text" ng-model="userId" name = "Name" />ssss
+	         <input style="display: block; margin: 20px 0 0 120px ; padding: 5px 12px;" type = "submit" value = "submit" />
+	      </form>
+	      </div>
+	   </div>ssss
    </body>
 </html>
 

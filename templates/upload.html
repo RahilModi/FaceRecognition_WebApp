@@ -2,44 +2,23 @@
 <html>
 <head>
 <title>Upload</title>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-</head>
-<body>
-<div class="container" style="width: 100%; margin-top: 200px; ">
-<form style="width: 30%; margin: 0 auto;"id="upload-form" action="{{ url_for('upload',Uid=Uid) }}" method="POST" enctype="multipart/form-data">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+ <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+ <script type="text/javascript" src="./templates/ng-file-upload.js"></script>
+ <script type="text/javascript" src="./templates/ng-file-upload.min.js"></script>
+ <script type="text/javascript" src="./templates/ng-file-upload-shim.js"></script>
+ <script type="text/javascript" src="./templates/ng-file-upload-shim.min.js"></script>
+ <script type="text/javascript" src="./templates/photoRecogApp.js"></script>
+ <script type="text/javascript" src="./templates/uploadController.js"></script>
 
-    <strong style="text-align: center; margin: 7px 0;">Files:</strong><br>
-    <input style=" margin: 7px 0;" id="file-picker" type="file" name="file" accept="image/*" multiple>
-    <div style="text-align: center; margin: 7px 0;" id="msg"></div>
-    <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
-</form>
+</head>
+<body ng-app="photoRecogApp">
+    <div class="container" style="width: 100%; margin-top: 200px; " ng-controller="uploadController">
+        <form style="width: 30%; margin: 0 auto;"id="upload-form" ng-submit="uploadFile()">
+            <strong style="text-align: center; margin: 7px 0;">Files:</strong><br>
+            <button style=" margin: 7px 0;" type="button" class="btn" ngf-select ng-model="myfile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Select File</button>
+            <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
+        </form>
 </div>
 </body>
-<script>
-
-    $("#file-picker").change(function(){
-
-        var input = document.getElementById('file-picker');
-
-        for (var i=0; i<input.files.length; i++)
-        {
-        //koala.jpg, koala.JPG substring(index) lastIndexOf('a') koala.1.jpg
-            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
-
-            if ((ext == 'jpg') || (ext == 'png'))
-            {
-                $("#msg").text("Files are supported")
-            }
-            else
-            {
-                $("#msg").text("Files are NOT supported")
-                document.getElementById("file-picker").value ="";
-            }
-
-        }
-
-
-    } );
-
-</script>
 </html>
