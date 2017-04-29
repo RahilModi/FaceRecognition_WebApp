@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Upload</title>
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
- <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
- <script type="text/javascript" src="./templates/ng-file-upload.js"></script>
- <script type="text/javascript" src="./templates/ng-file-upload.min.js"></script>
- <script type="text/javascript" src="./templates/ng-file-upload-shim.js"></script>
- <script type="text/javascript" src="./templates/ng-file-upload-shim.min.js"></script>
- <script type="text/javascript" src="./templates/photoRecogApp.js"></script>
- <script type="text/javascript" src="./templates/uploadController.js"></script>
-
-</head>
-<body ng-app="photoRecogApp">
-    <div class="container" style="width: 100%; margin-top: 200px; " ng-controller="uploadController">
-        <form style="width: 30%; margin: 0 auto;"id="upload-form" ng-submit="uploadFile()">
-            <strong style="text-align: center; margin: 7px 0;">Files:</strong><br>
-            <button style=" margin: 7px 0;" type="button" class="btn" ngf-select ng-model="myfile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Select File</button>
-            <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
-        </form>
+<div class="container" style="width: 100%; margin-top: 200px; " ng-controller="uploadController">
+    <form style="width: 30%; margin: 0 auto;"id="upload-form" ng-submit="uploadFile()">
+        <strong style="text-align: center; margin: 7px 0;">Files:</strong><br>
+        <button style=" margin: 7px 0;" type="button" class="btn" ngf-select ng-model="myfile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Select File</button>
+        <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
+</form>
 </div>
-</body>
-</html>
