@@ -1,0 +1,14 @@
+.Buttons {
+
+margin-top: 300px;
+margin-left: 700px;
+width: 400px;
+table-layout: fixed;
+border-collapse: collapse;
+}
+
+.center-element {
+width: 100px;
+margin: 0px auto 0px auto;
+}
+
