@@ -1,6 +1,32 @@
-<div class="container" style="width: 100%; margin-top: 200px; " ng-controller="compareController">
-    <form style="width: 30%; margin: 0 auto;"id="upload-form" ng-submit="uploadFile()">
-       	<h1> Live Image Scan to be done here...!!!</h1>
-        <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
-</form>
+<div ng-controller="compareController">
+    <div class="container text-center">
+        <div id="upload-file">
+        <h1>Upload an image from the media or take a picture to recognize</h1>
+            <div ng-hide="cameraOn">
+                <img ngf-src="myfile"  class="rounded float-left" id="photo">
+                <input type="file" id="imgInp" class="btn-default" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
+                <a class="btn btn-sm btn-info" ng-click="openCamera()" data-icon="&#xe90f;" id="camera">click</a>
+            </div>
+            <div ng-show="cameraOn">
+                <div class="row text-center">
+                         <video autoplay="true" id="videoElement"> </video>
+                </div>
+                <div class ="row text-center">
+                        <button class="btn btn-md btn-info" ng-click="shoot()" id="capture">Take a shoot</button>
+                </div>
+                <hr/>
+                <div class="row text-center">
+                    <a class="btn btn-primary" ng-click="goBack()">Go back</a>
+                </div>
+                <div class="row text-center">
+                    <canvas id="canvas" width="300" height="300"></canvas>
+                </div>
+            </div>
+            <div class="row" ng-hide="cameraOn">
+                <hr/>
+                <button class="btn btn-primary" type="submit" ng-click="uploadFile()">Upload</button>
+            </div>
+        </div>
+    </div>
 </div>
+

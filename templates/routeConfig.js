@@ -5,7 +5,15 @@ photoRecogApp.config(function($routeProvider){
 	console.log("arrived in route config");
 	$routeProvider
 		.when("/",{
+			templateUrl : "/home",
+			controller : "homeController"
+		})
+		.when("/login",{
 			templateUrl : "/login",
+			controller : "authController"
+		})
+		.when("/signUp",{
+			templateUrl : "/signUp",
 			controller : "authController"
 		})
 		.when("/upload",{
@@ -17,7 +25,7 @@ photoRecogApp.config(function($routeProvider){
 			controller : "compareController"
 		})
 		.otherwise({
-			templateUrl : "/login",
-			controller : "authController"
+		    redirectTo: "/home",
+			controller : "homeController"
 		});
 });
