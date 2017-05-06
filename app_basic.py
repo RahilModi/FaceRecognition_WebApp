@@ -13,10 +13,15 @@ client = MongoClient('mongodb://akhilesh_123:cmpe273@ds123361.mlab.com:23361/cmp
 db = client['cmpe273']
 collection = db['photorecog']
 
+filename = '';
+originalImage = ''
+tobeCompared = ''
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 print "app path : " + APP_ROOT
 
-app = Flask(__name__,static_folder='templates')
+app = Flask(__name__,static_url_path='/static', template_folder="templates")
+
 
 #secret key
 app.secret_key = 'dsjksdh88989djj'
@@ -43,6 +48,7 @@ def comparePage():
         return redirect(url_for('loginPage'))
 
 @app.route("/login",methods=["GET"])
+
 def loginPage():
     print "Arrived in index - Login"
     return render_template("login.html")
@@ -94,33 +100,6 @@ def index():
         print response
     return jsonify(response)
 
-@app.route("/signUp",methods=["POST"])
-def signUp():
-    message = request.data
-    dataDict = json.loads(message)
-
-    print dataDict['studentId']
-    print dataDict['firstName']
-    print dataDict['lastName']
-    response = {'status' : '','msg' : ''}
-    result = db.photorecog.insert_one({
-                "_id" : dataDict['studentId'],
-                "firstName" : dataDict['firstName'],
-                "lastName" : dataDict['lastName'],
-                "url" : ""
-        })
-    print result
-    response['status'] = 200
-    response['msg'] = "successfully registered"
-    session['userId']= dataDict['studentId']
-    print session['userId']
-    return jsonify(response)
-
-
-@app.route("/index1/<Uid>")
-def index1(Uid):
-    return render_template("upload.html",Uid=Uid)
-
 
 @app.route("/uploadfile/<Uid>", methods=['POST'])
 def upload(Uid):
@@ -144,12 +123,17 @@ def upload(Uid):
         print result
     return render_template("complete.html")
 
+@app.route("/index1/<Uid>")
+def index1(Uid):
+    return render_template("upload.html",Uid=Uid)
+
+
 # The file location will stored across the Student Id, so while fetching the file from database, he needs to query wrt to StudentId
 # and get the image and compare with the new image.
 #
 #
 
-@app.route("/compare/<Uid>")
+@app.route("/compare/<Uid>", methods=['POST'])
 def compare(Uid):
     print "in Compare"
     print request.files
@@ -168,10 +152,8 @@ def compare(Uid):
         file.save(tobeCompared)
     result = db.photorecog.find({"_id" : Uid},{"_id" : "0", "url" : "1"})
     for d in result:
-            originalImage = d['url']
-    tobeCompared
-    # Call python function passing URL of both files
-    # originalImage & tobeCompared
+        originalImage = d['url']
+    return render_template("complete.html")
 
 
 if __name__ == "__main__":

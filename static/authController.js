@@ -1,7 +1,14 @@
 photoRecogApp.controller('authController', function authController($scope,$rootScope,$http,$location){
+<<<<<<< HEAD:static/authController.js
+
+	console.log('inside aa');
+=======
     $rootScope.isUserLoggedIn = false;
 	console.log('inside authController');
+>>>>>>> 0620e8395380195b17c854aa2f0ed03a626f5e55:templates/authController.js
 
+	$location.path('/login');
+    $location.replace();
 	$scope.authenticate = function(){
 
 		console.log('Inside authenticate')
@@ -15,6 +22,9 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
       		data: JSON.stringify($scope.studentId)
 		}).then(function successCallback(response) {
 
+<<<<<<< HEAD:static/authController.js
+			$rootScope.userId = $scope.userId;
+=======
 			console.log(response.data.msg);
 			console.log(response.data.status);
 
@@ -55,6 +65,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
       		}
 		}).then(function successCallback(response) {
 
+>>>>>>> 0620e8395380195b17c854aa2f0ed03a626f5e55:templates/authController.js
 			console.log("response: ")
 
 			console.log(response.data.msg);

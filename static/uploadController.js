@@ -6,10 +6,9 @@ photoRecogApp.controller('uploadController', function uploadController($scope,$r
 
 	$scope.uploadFile = function(){
 
-		console.log('Inside uploadFile')
+		console.log('Inside uploadFile of upload controller')
 		console.log($scope.myfile);
-		var userId = "011499072";
-		var finalurl = '/uploadfile/' + userId;
+		var finalurl = '/uploadfile/' + $rootScope.userId;
 		console.log('url is : ' + finalurl);
 		$scope.upload = Upload.upload({
 			url: finalurl,
