@@ -6,7 +6,7 @@ import pprint
 import unicodedata
 from pymongo import MongoClient
 from flask import jsonify
-from flask import Flask, render_template, request,redirect, url_for ,session,escape
+from flask import Flask, render_template, request,redirect, url_for ,session,escape,json
 
 # Connection with MongoDB database :
 client = MongoClient('mongodb://akhilesh_123:cmpe273@ds123361.mlab.com:23361/cmpe273')
@@ -23,7 +23,7 @@ app.secret_key = 'dsjksdh88989djj'
 
 
 @app.route("/",methods=["GET"])
-def defaultpage():
+def defaultPage():
     print "Arrived in index - ROOT"
     return render_template("Index.html")
 
@@ -33,15 +33,17 @@ def homePage():
     return render_template("Home.html")
 
 @app.route("/compare",methods=["GET"])
-def comparepage():
-    print "Arrived in index - Comapre"
+def comparePage():
+    print "Arrived in index - Compare"
     if 'userId' in session:
+        print "found"
         return render_template("compare.html")
     else:
-        return render_template(url_for('loginpage'))
+        print "not found"
+        return redirect(url_for('loginPage'))
 
 @app.route("/login",methods=["GET"])
-def loginpage():
+def loginPage():
     print "Arrived in index - Login"
     return render_template("login.html")
 
@@ -51,53 +53,69 @@ def signUpPage():
     return render_template("signUp.html")
 
 @app.route("/upload",methods=["GET"])
-def uploadpage():
+def uploadPage():
     print "Arrived in index - upload"
-    # print session['userId']
-    # if(session['userId'] != None):
     if 'userId' in session:
         return render_template("upload.html")
     else:
-        return redirect(url_for('loginpage'))
+        return redirect(url_for('loginPage'))
 
 @app.route("/logout",methods=["GET"])
 def logout():
     print "Arrived in index - Logout"
     if 'userId' in session:
          # remove the userId from the session if it is there
-        session.pop('userId', None)
-        return redirect(url_for('defaultpage'))
+        print "clearing sesssion"
+        session.clear()
+        print "session cleared"
+        return redirect(url_for('homePage'))
     else:
         print 'error'
 
 @app.route("/login",methods=["POST"])
 def index():
-    Uid = request.get_json()
-    print Uid
-    cursor = collection.count({"_id" : Uid})
-    print cursor
+    studentId = request.get_json()
+    print studentId
+    count = collection.count({"_id" : studentId})
+    print count
     response = {'status' : '','msg' : ''}
-    if cursor == 0:
+    if count == 0:
         print "NO record found"
-        result = db.photorecog.insert_one({
-                "_id" : Uid,
-                "url" : ""
-        })
-        print "not found...."
-        print result
-        response['status'] = "200"
-        response['msg'] = "new"
+        response['status'] = "404"
+        response['msg'] = "student Id not found"
         print response
     else:
         print "found user...."
-        print "found"
         response['status'] = "200"
         response['msg'] = "existing"
-        session['userId']=Uid;
-        print Uid;
+        session['userId']= studentId;
+        print studentId;
         print session['userId']
         print response
     return jsonify(response)
+
+@app.route("/signUp",methods=["POST"])
+def signUp():
+    message = request.data
+    dataDict = json.loads(message)
+
+    print dataDict['studentId']
+    print dataDict['firstName']
+    print dataDict['lastName']
+    response = {'status' : '','msg' : ''}
+    result = db.photorecog.insert_one({
+                "_id" : dataDict['studentId'],
+                "firstName" : dataDict['firstName'],
+                "lastName" : dataDict['lastName'],
+                "url" : ""
+        })
+    print result
+    response['status'] = 200
+    response['msg'] = "successfully registered"
+    session['userId']= dataDict['studentId']
+    print session['userId']
+    return jsonify(response)
+
 
 @app.route("/index1/<Uid>")
 def index1(Uid):

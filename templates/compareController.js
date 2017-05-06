@@ -2,7 +2,7 @@
 photoRecogApp.controller('compareController', function compareController($scope,$rootScope,$http,Upload){
 
 	console.log('inside compareController');
-$scope.fileExt;
+    $scope.fileExt;
     $scope.cameraOn = false;
 	$scope.uploadFile = function(){
 
@@ -14,7 +14,7 @@ $scope.fileExt;
 		$scope.upload = Upload.upload({
 			url: finalurl,
 			data: {
-				file: $scope.myfile
+				file3: $scope.myfile
 			}
 		}).then(function (resp) {
 			console.log('successful');
@@ -78,13 +78,17 @@ $scope.fileExt;
             var imag = new Image();
             console.log(1)
             imag.src= URL.createObjectURL(blob);
+            //console.log(imag.src);
             console.log(2)
-            //document.body.appendChild(imag);
+           // document.body.appendChild(imag);
+            var file2 = new File(["hello"], "newImage.png");
+
             //var file = new File(imag,'newfile.png')
-            //console.log(file);
+            console.log(file2);
             //console.log(imag);
             $scope.cameraOn = false;
-            $scope.myfile = imag.src;
+            $scope.myfile = file2;
+            console.log($scope.myfile);
         }
 
         function dataURItoBlob(dataURI) {

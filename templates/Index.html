@@ -28,7 +28,7 @@
 <body>
     <!-- Navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container" ng-conroller="">
+    <div class="container" ng-conroller="navController">
         <div class="navbar-header">
             <a class="navbar-brand logo" href="#"><img src="./templates/images/thumbnail.jpg"><h4>Face Recognition</h4></a>
         </div>
@@ -44,9 +44,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#login" ng-hide="isUserLoggedIn">Login</a></li>
-                <li><a href="#signUp" ng-hide="isUserLoggedIn">SignUp</a></li>
-                <li><a href="#signUp" ng-show="isUserLoggedIn">LogOut</a></li>
+                <li><a href="#/login" ng-hide="isUserLoggedIn">Login</a></li>
+                <li><a href="#/signUp" ng-hide="isUserLoggedIn">SignUp</a></li>
+                <li><a class="btn" ng-click="doLogout()" ng-show="isUserLoggedIn">LogOut</a></li>
             </ul>
 
         </div>

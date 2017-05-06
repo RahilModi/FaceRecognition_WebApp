@@ -10,9 +10,9 @@
 	<form name="loginForm" ng-submit="authenticate()" novalidate>
         <div class="form-group">
             <label class="sr-only">Student Id</label>
-            <input type="text" name="studentId" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required>
+            <input type="text" name="studentId" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required />
             <p class ="text-center" style="color:red" ng-show="loginForm.studentId.$error.pattern">Only number are allowed</p>
-            <p class ="text-center" style="color:red" ng-show="signUpForm.studentId.$error.maxlength || signUpForm.studentId.$error.minlength">Id should be of 9 digits</p>
+            <!--<p class ="text-center" style="color:red" ng-show="loginForm.studentId.$error.maxlength || loginForm.studentId.$error.minlength">Id should be of 9 digits</p>-->
         </div>
         <!-- SUBMIT BUTTON -->
         <div class="form-group">

@@ -2,6 +2,8 @@
 photoRecogApp.controller('homeController', home);
 
 function home($scope,$location,$rootScope){
+        $location.path('/home');
+        $location.replace();
 
     $scope.doLogin= function(){
         $location.path('/login');
