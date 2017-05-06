@@ -13,10 +13,15 @@ client = MongoClient('mongodb://akhilesh_123:cmpe273@ds123361.mlab.com:23361/cmp
 db = client['cmpe273']
 collection = db['photorecog'];
 
+filename = '';
+originalImage = ''
+tobeCompared = ''
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 print "app path : " + APP_ROOT
 
-app = Flask(__name__,static_folder='templates')
+app = Flask(__name__,static_url_path='/static', template_folder="templates")
+
 
 
 @app.route("/",methods=["GET"])
@@ -31,7 +36,7 @@ def comparepage():
 
 @app.route("/login",methods=["GET"])
 def loginpage():
-        print "Arrived in index - ROOT"
+        print "Arrived in login - ROOT"
         return render_template("login.html")
 
 @app.route("/upload",methods=["GET"])
@@ -62,16 +67,13 @@ def index():
                 response['msg'] = "existing"
                 print response
         return jsonify(response)
-@app.route("/index1/<Uid>")
-def index1(Uid):
-	return render_template("upload.html",Uid=Uid)
-
 
 @app.route("/uploadfile/<Uid>", methods=['POST'])
 def upload(Uid):
+        global originalImageName
         print "in Upload file"
         print request.files;
-        target = os.path.join(APP_ROOT, 'images')
+        target = os.path.join(APP_ROOT, 'static')
     	print(target)
 
      	if not os.path.isdir(target):
@@ -79,13 +81,14 @@ def upload(Uid):
 
      	for file in request.files.getlist("file"):
 		print(file)
-		filename = file.filename
-		print type(filename)
-		destination = "/".join([target, filename])
+		originalImageName = file.originalImageName
+		print type(originalImageName)
+		destination = "/".join([target, originalImageName])
 		file.save(destination)
 		destination = unicodedata.normalize('NFKD', destination).encode('ascii','ignore')
-                result = db.photorecog.update_one({"_id" : Uid},{"$set" : {"url" : destination}});
-                print result
+        result = db.photorecog.update_one({"_id" : Uid},{"$set" : {"url" : destination}});
+        originalImage = destination
+        print result
     	return render_template("complete.html")
 
 # The file location will stored across the Student Id, so while fetching the file from database, he needs to query wrt to StudentId
@@ -93,11 +96,13 @@ def upload(Uid):
 #
 #
 
-@app.route("/compare/<Uid>")
+@app.route("/compare/<Uid>", methods=['POST'])
 def compare(Uid):
+        tobeCompared = ''
+        originalImage = ''
         print "in Compare"
         print request.files;
-        target = os.path.join(APP_ROOT, 'images')
+        target = os.path.join(APP_ROOT, 'static')
         print(target)
 
         if not os.path.isdir(target):
@@ -111,12 +116,15 @@ def compare(Uid):
                 print "destination is : " + tobeCompared
                 file.save(tobeCompared)
         result = db.photorecog.find({"_id" : Uid},{"_id" : "0", "url" : "1"});
-        for d in result:
-                originalImage = d['url']
-        tobeCompared
-        # Call python function passing URL of both files
-        # originalImage & tobeCompared
 
+
+        for r in result:
+            originalImage = r['url']
+        response = {'comparedImagePath' : '','confidence' : '', 'originalImagePath' : ''}
+        response['comparedImagePath'] = tobeCompared
+        response['confidence'] = 5.0
+        response['originalImagePath'] = originalImage
+        return jsonify(response)
 
 if __name__ == "__main__":
     # print "in main : creating connection"

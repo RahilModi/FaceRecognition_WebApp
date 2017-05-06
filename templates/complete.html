@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Image uploaded
-</body>
-</html>
+<div class="container" ng-controller="completeController">
+<img ng-src={{destinationPath}}>
+<img ng-src={{originalFilePath}}>
+<br>
+<br>
+<label>Confidence</label><label>{{confidence}}</label>

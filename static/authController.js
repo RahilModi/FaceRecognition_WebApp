@@ -1,7 +1,9 @@
 photoRecogApp.controller('authController', function authController($scope,$rootScope,$http,$location){
 
-	console.log('inside authController');
+	console.log('inside aa');
 
+	$location.path('/login');
+    $location.replace();
 	$scope.authenticate = function(){
 
 		console.log('Inside authenticate')
@@ -15,7 +17,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
       		data: JSON.stringify($scope.userId)
 		}).then(function successCallback(response) {
 
-
+			$rootScope.userId = $scope.userId;
 			console.log("response: ")
 
 			console.log(response.data.msg);

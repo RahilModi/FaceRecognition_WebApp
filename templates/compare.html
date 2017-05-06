@@ -1,6 +1,18 @@
 <div class="container" style="width: 100%; margin-top: 200px; " ng-controller="compareController">
+    <div ng-hide="isCompared">
     <form style="width: 30%; margin: 0 auto;"id="upload-form" ng-submit="uploadFile()">
        	<h1> Live Image Scan to be done here...!!!</h1>
+       	 <button style=" margin: 7px 0;" type="button" class="btn" ngf-select ng-model="myfile" name="file" ngf-accept="'image/*'" ngf-max-size="20MB">Select File</button>
         <input style="text-align: center; margin: 7px 0;" type="submit" value="Upload!" id="upload-button">
-</form>
+	</form>
+	</div>
+	<div ng-show="isCompared">
+	<h1>helloworld</h1>
+		<img ng-src="{{originalImagePath}}"/>
+		<img ng-src="{{comparedImagePath}}"/>
+		<br>
+		<br>
+		<label>Confidence</label><label>{{confidence}}</label>
+	</div>
 </div>
+
