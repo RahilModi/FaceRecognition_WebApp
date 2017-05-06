@@ -26,4 +26,12 @@ photoRecogApp.controller('uploadController', function uploadController($scope,$r
 			// console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
 		});
 	};
+
+    $scope.onChange = function (files) {
+          if(files[0] == undefined) return;
+          $scope.fileExt = files[0].name.split(".").pop()
+          $scope.myfile = files[0];
+
+        }
+
 });
