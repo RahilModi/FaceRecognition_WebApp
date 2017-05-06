@@ -134,13 +134,14 @@ def upload(Uid):
 
     for file in request.files.getlist("file"):
         print(file)
-    filename = file.filename
-    print type(filename)
-    destination = "/".join([target, filename])
-    file.save(destination)
-    destination = unicodedata.normalize('NFKD', destination).encode('ascii','ignore')
-    result = db.photorecog.update_one({"_id" : Uid},{"$set" : {"url" : destination}})
-    print result
+        filename = file.name
+        print type(filename)
+        destination = "/".join([target, filename])
+        file.save(destination)
+        print destination
+        destination = unicodedata.normalize('NFKD', destination).encode('ascii','ignore')
+        result = db.photorecog.update_one({"_id" : Uid},{"$set" : {"url" : destination}})
+        print result
     return render_template("complete.html")
 
 # The file location will stored across the Student Id, so while fetching the file from database, he needs to query wrt to StudentId

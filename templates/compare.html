@@ -3,7 +3,7 @@
         <div id="upload-file">
         <h1>Upload an image from the media or take a picture to recognize</h1>
             <div ng-hide="cameraOn">
-                <img ngf-src="myfile"  class="rounded float-left" id="photo">
+                <img ng-src="clickedPhoto"  class="rounded float-left" id="photo">
                 <input type="file" id="imgInp" class="btn-default" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
                 <a class="btn btn-sm btn-info" ng-click="openCamera()" data-icon="&#xe90f;" id="camera">click</a>
             </div>
