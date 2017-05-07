@@ -6,10 +6,9 @@ photoRecogApp.controller('uploadController', function uploadController($scope,$r
 
 	$scope.uploadFile = function(){
 
-		console.log('Inside uploadFile')
+		console.log('Inside uploadFile of upload controller')
 		console.log($scope.myfile);
-		var userId = "011499072";
-		var finalurl = '/uploadfile/' + userId;
+		var finalurl = '/uploadfile/' + $rootScope.studentId;
 		console.log('url is : ' + finalurl);
 		$scope.upload = Upload.upload({
 			url: finalurl,
@@ -27,4 +26,12 @@ photoRecogApp.controller('uploadController', function uploadController($scope,$r
 			// console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
 		});
 	};
+
+    $scope.onChange = function (files) {
+          if(files[0] == undefined) return;
+          $scope.fileExt = files[0].name.split(".").pop()
+          $scope.myfile = files[0];
+
+        }
+
 });

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+<div style = "margin-top: 300px;margin-left: 700px;width: 400px;table-layout: fixed;border-collapse: collapse; ">
+ <button style="margin-right: 40px" id="compare"><h3>Compare<h3></button>
+ <button id="upload"><h3>Upload<h3></button>
+
+</div>
+</body>
+<script type="text/javascript">
+
+    document.getElementById("compare").onclick = function () {
+        location.href = 'index.html';
+    };
+
+    document.getElementById("upload").onclick = function () {
+        var Uid = window.location + '' ;
+        console.log (Uid) ;
+        var fields = Uid.split('/');
+        console.log (fields);
+        var unique = fields[4];
+
+        location.href = "../" +unique + "/edit";
+    };
+</script>
+</html>

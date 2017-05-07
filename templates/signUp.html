@@ -1,0 +1,42 @@
+<!-- Sign Up-->
+
+<div ng-controller="authController" class="container" id="signUp">
+    <div class="col-sm-8 col-sm-offset-2">
+
+    <!-- PAGE HEADER -->
+        <div class="modal-header form-extra">
+            <button type="button" class="close" ng-click="gotoHome()" aria-hidden="true">&times;</button>
+            <h4 class="modal-title text-center" >Welcome and register</h4>
+        </div>
+        <img class="profile-img" src="./static/images/Login.png" alt="">
+	<form name="signUpForm" ng-submit="signingUp()" novalidate>
+        <!-- Student ID-->
+        <div class="form-group">
+            <label class="sr-only">Student Id</label>
+            <input type="text" name="studentId" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required>
+            <p class ="text-center" style="color:red" ng-show="signUpForm.studentId.$error.pattern">Only number are allowed</p>
+            <!--<p class ="text-center" style="color:red" ng-show="signUpForm.studentId.$error.maxlength || signUpForm.studentId.$error.minlength">Id should be of 9 digits</p>-->
+        </div>
+        <!-- Student ID-->
+        <div class="form-group">
+            <label class="sr-only">First Name</label>
+            <input type="text" name="fName" class="form-control" placeholder="First Name" ng-model="fName" ng-minlength="2" ng-pattern="lettersOnlyRegex" required>
+            <p class ="text-center" style="color:red" ng-show="signUpForm.fName.$error.pattern">Only alphabets are allowed</p>
+            <p class ="text-center" style="color:red" ng-show="signUpForm.fName.$error.minlength">at-least 2 alphabets</p>
+        </div>
+        <!-- Student ID-->
+        <div class="form-group">
+            <label class="sr-only">Student Id</label>
+            <input type="text" name="lName" class="form-control" placeholder="Last Name"  ng-model="lName" ng-minlength="2" ng-pattern="lettersOnlyRegex" required>
+            <p class ="text-center" style="color:red" ng-show="signUpForm.lName.$error.pattern">Only letters are allowed</p>
+            <p class ="text-center" style="color:red" ng-show="signUpForm.lName.$error.minlength">at-least 2 alphabets</p>
+        </div>        <!-- SUBMIT BUTTON -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary form-control" ng-disabled="signUpForm.$invalid">Submit</button>
+        </div>
+        <div class="form-group panel-footer ">
+            <a href="#login" class="text-center form-control"><strong>Already registered?</strong></a>
+        </div>
+	</form>
+    </div>
+</div>
