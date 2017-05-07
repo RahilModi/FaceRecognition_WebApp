@@ -64,6 +64,12 @@ def signUpPage():
     print "Arrived in index - signUp"
     return render_template("signUp.html")
 
+
+@app.route("/complete",methods=["GET"])
+def completePage():
+    print "Arrived in index - complete"
+    return render_template("complete.html")
+
 @app.route("/upload",methods=["GET"])
 def uploadPage():
     print "Arrived in index - upload"
@@ -154,7 +160,7 @@ def upload(studentId):
     for file in request.files.getlist("file"):
         # print "filename : "
         print(file)
-        filename =  studentId + '-1'
+        filename =  "subject01"
         # print type(filename)
         destination = "/".join([target, filename])
         file.save(destination)
@@ -195,7 +201,7 @@ def compare(studentId):
     for file in request.files.getlist("file"):
         # print "filename : "
         print(file)
-        filename =  studentId + '-2'
+        filename =  "subject02"
         # print type(filename)
         destination = "/".join([target, filename])
         file.save(destination)
@@ -214,7 +220,7 @@ def compare(studentId):
 
     for confidence in confidences:
         print confidence
-
+    print "Done"
     return render_template("complete.html")
 
 
