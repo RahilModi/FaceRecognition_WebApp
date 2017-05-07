@@ -1,4 +1,4 @@
-photoRecogApp.controller('compareController', function compareController($scope,$rootScope,$http,Upload){
+photoRecogApp.controller('compareController', function compareController($scope,$rootScope,$location,$http,Upload){
 
 	console.log('inside compareController');
     $scope.fileExt;
@@ -19,6 +19,9 @@ photoRecogApp.controller('compareController', function compareController($scope,
 			}
 		}).then(function (resp) {
 			console.log('successful');
+			console.log(resp);
+			$location.path("/complete");
+			$location.replace();
 		}, function (resp) {
 			console.log('successful');
 		}, function (evt) {

@@ -24,6 +24,10 @@ photoRecogApp.config(function($routeProvider){
 			templateUrl : "/compare"
 			//controller : "compareController"
 		})
+		.when("/complete",{
+			templateUrl : "/complete"
+			//controller : "compareController"
+		})
 		.when("/logout",{
 		    templateUrl : "/logout"
 		})
