@@ -17,6 +17,7 @@ def predict_confidence(originalImagePath,tobeComparedImagePath,studentId):
     faceCascade = cv2.CascadeClassifier(cascadePath)
 
     # For face recognition we will the the LBPH Face Recognizer
+
     recognizer = cv2.face.createLBPHFaceRecognizer()
 
     # Path to the Yale Dataset

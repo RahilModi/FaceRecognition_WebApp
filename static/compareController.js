@@ -26,6 +26,7 @@ photoRecogApp.controller('compareController', function compareController($scope,
 			$location.path("/complete");
 			$location.replace();
 		}, function (resp) {
+		},
 		}, function (evt) {
 			// var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
 			// console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);

@@ -28,8 +28,8 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
         	    console.log('existing user ')
         	    $rootScope.isUserLoggedIn = true;
         	    $rootScope.studentId = $scope.studentId;
-				$rootScope.fName = response.data.msg.firstName;
-				$rootScope.lName = response.data.msg.lastName;
+		    $rootScope.fName = response.data.msg.firstName;
+		    $rootScope.lName = response.data.msg.lastName;
         	    console.log('student ID is : ')
         	    console.log($scope.studentId)
         		$location.path('/upload');
@@ -81,6 +81,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
 			console.log(response.data.msg);
 
         	if (response.data.status == "200") {
+
         		$rootScope.studentId = $scope.studentId;
 
         	    console.log('new user registered ')
