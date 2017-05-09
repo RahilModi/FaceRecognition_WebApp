@@ -1,4 +1,4 @@
-<div ng-controller="authController" class="container" id="login">
+<div ng-app = "photoRecogApp"  ng-controller="authController" class="container" id="login">
     <div class="col-sm-8 col-sm-offset-2">
 
     <!-- PAGE HEADER -->
@@ -6,7 +6,7 @@
             <button type="button" class="close" ng-click="gotoHome()" aria-hidden="true">&times;</button>
             <h4 class="modal-title text-center" >Login Page</h4>
         </div>
-        <img class="profile-img" src="./templates/images/Login.png" alt="">
+        <img class="profile-img" src="./static/images/Login.png" alt="">
 	<form name="loginForm" ng-submit="authenticate()" novalidate>
         <div class="form-group">
             <label class="sr-only">Student Id</label>
@@ -18,10 +18,16 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary form-control" ng-disabled="loginForm.$invalid">Submit</button>
         </div>
+        <div class="alert">
+            {a alertMessage a}
+        </div>
+
         <div class="form-group panel-footer ">
             <a href="#signUp" class="text-center form-control"><strong>New User?</strong></a>
         </div>
 	</form>
+    <br>
+    <br>
     </div>
 </div>
 

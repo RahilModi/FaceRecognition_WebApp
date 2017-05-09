@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FaceRecognition</title>
-    <link rel="stylesheet" href="./templates/css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="./templates/css/bootstrap-theme.min.css" media="screen">
-    <link rel="stylesheet" href="./templates/css/main.css" media="screen">
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="./static/css/bootstrap-theme.min.css" media="screen">
+    <link rel="stylesheet" href="./static/css/main.css" media="screen">
 
     <!--angular files-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
 	<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 
-    <script type="text/javascript" src="./templates/ng-file-upload-shim.js"></script>
-	<script type="text/javascript" src="./templates/ng-file-upload-shim.min.js"></script>
-	<script type="text/javascript" src="./templates/ng-file-upload.js"></script>
-	<script type="text/javascript" src="./templates/ng-file-upload.min.js"></script>
-	<script type="text/javascript" src="./templates/routeConfig.js"></script>
-	<script type="text/javascript" src="./templates/compareController.js"></script>
-	<script type="text/javascript" src="./templates/authController.js"></script>
-	<script type="text/javascript" src="./templates/uploadController.js"></script>
-    <script type="text/javascript" src="./templates/homeController.js"></script>
-    <script type="text/javascript" src="./templates/navController.js"></script>
+    <script type="text/javascript" src="./static/ng-file-upload-shim.js"></script>
+        <script type="text/javascript" src="./static/ng-file-upload-shim.min.js"></script>
+        <script type="text/javascript" src="./static/ng-file-upload.js"></script>
+        <script type="text/javascript" src="./static/ng-file-upload.min.js"></script>
+        <script type="text/javascript" src="./static/routeConfig.js"></script>
+        <script type="text/javascript" src="./static/compareController.js"></script>
+        <script type="text/javascript" src="./static/authController.js"></script>
+        <script type="text/javascript" src="./static/uploadController.js"></script>
+        <script type="text/javascript" src="./static/completeController.js"></script>
+
+    <script type="text/javascript" src="./static/homeController.js"></script>
+    <script type="text/javascript" src="./static/navController.js"></script>
 
  </head>
 <body>
@@ -30,7 +32,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container" ng-conroller="navController">
         <div class="navbar-header">
-            <a class="navbar-brand logo" href="#"><img src="./templates/images/thumbnail.jpg"><h4>Face Recognition</h4></a>
+            <a class="navbar-brand logo" href="#"><img src="./static/images/thumbnail.jpg"><h4>Face Recognition</h4></a>
         </div>
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -43,10 +45,11 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+                <li><a ng-show = "isUserLoggedIn">{a fName a} {a lName a}</a></li>
                 <li><a href="#/login" ng-hide="isUserLoggedIn">Login</a></li>
                 <li><a href="#/signUp" ng-hide="isUserLoggedIn">SignUp</a></li>
                 <li><a class="btn" ng-click="doLogout()" ng-show="isUserLoggedIn">LogOut</a></li>
+                <li><p ng-show="isUserLoggedIn"> {a isUserLoggedIn a} </p></li>
             </ul>
 
         </div>
@@ -80,7 +83,7 @@
 </div>
 <!-- End Footer -->
 <script src="http://code.jquery.com/jquery.js"></script>
-<script src="./templates/js/bootstrap.min.js"></script>
-<script src="./templates/js/app.js"></script>
+<script src="./static/js/bootstrap.min.js"></script>
+<script src="./static/js/app.js"></script>
 </body>
 </html>

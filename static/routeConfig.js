@@ -1,6 +1,11 @@
 
 var photoRecogApp = angular.module('photoRecogApp',['ngFileUpload','ngRoute']);
 
+photoRecogApp.config(['$interpolateProvider', function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{a');
+  $interpolateProvider.endSymbol('a}');
+}]);
+
 photoRecogApp.config(function($routeProvider){
 	console.log("arrived in route config");
 	$routeProvider
@@ -22,6 +27,10 @@ photoRecogApp.config(function($routeProvider){
 		})
 		.when("/compare",{
 			templateUrl : "/compare"
+			//controller : "compareController"
+		})
+		.when("/complete",{
+			templateUrl : "/complete"
 			//controller : "compareController"
 		})
 		.when("/logout",{

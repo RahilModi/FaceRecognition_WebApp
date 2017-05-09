@@ -2,7 +2,7 @@
     <div class="container text-center">
         <div id="upload-pic">
             <h1> First time you need to upload your photo id</h1>
-            <img ngf-src="myfile"  class="rounded float-left">
+            <img ngf-src="myfile"  class="rounded float-left" width="300px" height="300px">
              <input type="file" id="imgInp" class="btn-default" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
             <hr/>
             <button class="btn btn-primary" type="submit" ng-click="uploadFile()">Upload</button>

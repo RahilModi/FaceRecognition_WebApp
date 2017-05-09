@@ -1,14 +1,11 @@
-photoRecogApp.controller('authController', function authController($scope,$rootScope,$http,$location){
-<<<<<<< HEAD:static/authController.js
+photoRecogApp.controller('authController', function authController($scope,$rootScope,$http,$location,$interval){
 
-	console.log('inside aa');
-=======
     $rootScope.isUserLoggedIn = false;
-	console.log('inside authController');
->>>>>>> 0620e8395380195b17c854aa2f0ed03a626f5e55:templates/authController.js
+	
+	$scope.alertMessage = ""
 
-	$location.path('/login');
-    $location.replace();
+	console.log('inside authController');
+
 	$scope.authenticate = function(){
 
 		console.log('Inside authenticate')
@@ -21,24 +18,40 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
 	  		headers: { 'Content-Type': 'application/json' },
       		data: JSON.stringify($scope.studentId)
 		}).then(function successCallback(response) {
+			
+			console.log('response')
 
-<<<<<<< HEAD:static/authController.js
-			$rootScope.userId = $scope.userId;
-=======
 			console.log(response.data.msg);
 			console.log(response.data.status);
-
-        	if (response.data.status == 200) {
+			
+        	if (response.data.status == "200") {
         	    console.log('existing user ')
         	    $rootScope.isUserLoggedIn = true;
-        		$location.path('/compare');
+        	    $rootScope.studentId = $scope.studentId;
+				$rootScope.fName = response.data.msg.firstName;
+				$rootScope.lName = response.data.msg.lastName;
+        	    console.log('student ID is : ')
+        	    console.log($scope.studentId)
+        		$location.path('/upload');
         		$location.replace();
         	}
-        	else if (response.data.status == 404){
+        	else if (response.data.status == "404"){
         	    console.log('not a registered user')
         	    //alert("Student Id not found, please register");
-        		$location.path('/signUp');
-        		$location.replace();
+				$scope.alertMessage = "Studen ID not found, Redirecting to SignUp"
+				var temp = 1;
+				var id = $interval(function() {
+			   		if (temp == 30) {
+        				$location.path('/signUp');
+        				$location.replace();
+			    	}	else {
+						if (temp % 5 == 0){
+							$scope.alertMessage = $scope.alertMessage + '.'
+						}
+						console.log(temp)
+			      		temp++;
+			    	}
+			  	}, 50);
         	}
 
 	  	}, function errorCallback(response) {
@@ -65,19 +78,21 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
       		}
 		}).then(function successCallback(response) {
 
->>>>>>> 0620e8395380195b17c854aa2f0ed03a626f5e55:templates/authController.js
-			console.log("response: ")
-
 			console.log(response.data.msg);
 
-        	if (response.data.status == 200) {
+        	if (response.data.status == "200") {
+        		$rootScope.studentId = $scope.studentId;
+
         	    console.log('new user registered ')
         	    $rootScope.isUserLoggedIn = true;
+				$rootScope.fName = $scope.fName;
+				$rootScope.lName = $scope.lName;
         		$location.path('/upload');
         		$location.replace();
         	}
-        	else if (response.data.status == 404){
-        		$location.path('/signUp');
+        	else if (response.data.status == "400"){
+				console.log('Student is already registered')
+        		$location.path('/login');
         		$location.replace();
         	}
 
