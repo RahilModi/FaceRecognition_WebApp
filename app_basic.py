@@ -253,7 +253,7 @@ def compare(studentId):
     else:
         confidenceToSend = min(confidences)
         print "Done"
-        print "found confidence"
+        print "found confidence " + str(confidenceToSend)
         msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
         msg['originalImagePathToSend'] = originalImagePathToSend
         msg['tobeComparedImagePathToSend'] = tobeComparedImagePathToSend
