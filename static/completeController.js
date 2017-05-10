@@ -4,14 +4,16 @@ photoRecogApp.controller('completeController', function completeController($scop
 	console.log($rootScope.studentId);
 	//alert($rootScope.studentId);
    
+	$scope.comparedfilePath = $rootScope.comparedfilePath
+	
+	console.log('destination path')
+	console.log($scope.comparedfilePath);
+	$scope.originalfilePath = $rootScope.originalfilePath;
 
-	$scope.destination_path = 'http://localhost:3000/static/images/' + document.getElementById("studentid").value + '/subject02';
-	console.log($scope.destination_path);
-	$scope.originalFilePath = 'http://localhost:3000/static/images/' + document.getElementById("studentid").value + '/subject01';
-	console.log($scope.originalFilePath);
-	$scope.similarity= 98;
-	console.log($scope.similarity)
+	console.log('original path')
+	console.log($scope.originalfilePath);
 
-}).config(function($interpolateProvider) {
-        $interpolateProvider.startSymbol('//').endSymbol('//');
-    });
+	console.log('confidence')
+	$scope.confidence = $rootScope.confidence;
+	console.log($scope.confidence)
+});
