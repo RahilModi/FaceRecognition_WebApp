@@ -242,8 +242,8 @@ def compare(studentId):
 
     confidences = predict_confidence(originalImagePath,tobeComparedImagePath,studentId)
 
-    originalImagePathToSend = 'http://localhost:5000/static' + originalImagePath.split('static')[1]
-    tobeComparedImagePathToSend = 'http://localhost:5000/static' + tobeComparedImagePath.split('static')[1]
+    originalImagePathToSend = 'http://cmpe273LoadBalancer-393171291.us-west-2.elb.amazonaws.com:5000/static' + originalImagePath.split('static')[1]
+    tobeComparedImagePathToSend = 'http://cmpe273LoadBalancer-393171291.us-west-2.elb.amazonaws.com:5000/static' + tobeComparedImagePath.split('static')[1]
 
     if not confidences:
         print "len is zero"

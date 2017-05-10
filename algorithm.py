@@ -18,7 +18,7 @@ def predict_confidence(originalImagePath,tobeComparedImagePath,studentId):
 
     # For face recognition we will the the LBPH Face Recognizer
 
-    recognizer = cv2.face.createLBPHFaceRecognizer()
+    recognizer = cv2.createLBPHFaceRecognizer()
 
     # Path to the Yale Dataset
     path = originalImagePath

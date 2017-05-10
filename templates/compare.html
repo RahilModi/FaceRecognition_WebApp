@@ -4,7 +4,7 @@
         <h1>Upload an image from the media or take a picture to recognize</h1>
         <br>
             <div ng-hide="cameraOn">
-                <img ngf-src="myfile"  class="rounded float-left" width="300px" height="300px" id="selectedImage">
+                <img ngf-src="preview"  class="rounded float-left" width="300px" height="300px" id="selectedImage">
                 <br>
                 <input type="file" id="imgInp" class="btn-default btn-lg" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
                 <br>

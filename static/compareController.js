@@ -85,6 +85,7 @@ photoRecogApp.controller('compareController', function compareController($scope,
             var file = new File([blob], 'test.jpg');
             console.log('Before Close before');
             $scope.cameraOn = false;
+            $scope.preview = image.src
             $scope.myfile = file
             console.log($scope.myfile)
 			if(camStream.active){
