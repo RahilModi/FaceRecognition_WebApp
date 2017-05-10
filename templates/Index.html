@@ -26,10 +26,10 @@
     <script type="text/javascript" src="./static/navController.js"></script>
 
  </head>
-<body>
+<body >
     <!-- Navbar -->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container" ng-controller="navController">
+    <div class="container" ng-controller="navController" >
         <div class="navbar-header">
             <a class="navbar-brand logo" href="#"><img src="./static/images/thumbnail.jpg"><h4>Face Recognition</h4></a>
         </div>
@@ -44,7 +44,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/">Home</a></li>
-                <li><a ng-show = "isUserLoggedIn">{a fName a} {a lName a}</a></li>
+                    <li><a ng-show = "isUserLoggedIn">{a fName a} {a lName a}</a></li>
                 <li><a href="#/login" ng-hide="isUserLoggedIn">Login</a></li>
                 <li><a href="#/signUp" ng-hide="isUserLoggedIn">SignUp</a></li>
                 <li><a class="btn" ng-click="doLogout()" ng-show="isUserLoggedIn">Logout</a></li>
@@ -54,7 +54,9 @@
 </div>
 <!-- End navbar -->
 <!--different Viewe-->
+<div id="content">
 <div class="ng-view"></div>
+</div>
 <!-->
 <!-- Footer-->
 <div class="container-fluid">

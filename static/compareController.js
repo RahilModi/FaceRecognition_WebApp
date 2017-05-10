@@ -1,10 +1,15 @@
-photoRecogApp.controller('compareController', function compareController($scope,$rootScope,$location,$http,Upload){
+photoRecogApp.controller('compareController', function compareController($window,$scope,$rootScope,$location,$http,Upload){
+
+	$rootScope.isUserLoggedIn = $window.sessionStorage.isUserLoggedIn;
+    $rootScope.fName = $window.sessionStorage.fName;
+    $rootScope.lName = $window.sessionStorage.lName;
 
 	console.log('inside compareController');
     $scope.fileExt;
     $scope.cameraOn = false;
+	$scope.tempfile = null;
 	$scope.uploadFile = function(){
-
+		$scope.tempfile = null;
 		console.log('Inside uploadFile')
 		console.log($scope.myfile);
 		var userId = $rootScope.studentId;
@@ -78,8 +83,11 @@ photoRecogApp.controller('compareController', function compareController($scope,
             console.log('blob created---edi')
             var file = new File([blob], 'test.jpg');
             console.log('Before Close before');
+			var fd = new FormData(document.forms[0]);
+        	fd.append("canvasImage", blob);
             $scope.cameraOn = false;
-            $scope.myfile = file
+            $scope.myfile = file;
+			$scope.tempfile = image.src;
             console.log($scope.myfile)
 			if(camStream.active){
 				console.log('camStream active')

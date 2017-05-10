@@ -1,11 +1,14 @@
 
-photoRecogApp.controller('uploadController', function uploadController($scope,$rootScope,$http,Upload,$location){
+photoRecogApp.controller('uploadController', function uploadController($window,$scope,$rootScope,$http,Upload,$location){
 
 	console.log('inside uploadController');
-
+	$rootScope.isUserLoggedIn = $window.sessionStorage.isUserLoggedIn;
+    $rootScope.fName = $window.sessionStorage.fName;
+    $rootScope.lName = $window.sessionStorage.lName;
+	$scope.isPhotoSelected = false;
 
 	$scope.uploadFile = function(){
-
+		$scope.isPhotoSelected = false;
 		console.log('Inside uploadFile of upload controller')
 		console.log($scope.myfile);
 		var finalurl = '/uploadfile/' + $rootScope.studentId;
@@ -31,6 +34,8 @@ photoRecogApp.controller('uploadController', function uploadController($scope,$r
           if(files[0] == undefined) return;
           $scope.fileExt = files[0].name.split(".").pop()
           $scope.myfile = files[0];
+		  $scope.isPhotoSelected = true;
+
 
         }
 

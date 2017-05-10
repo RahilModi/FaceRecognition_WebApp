@@ -1,8 +1,9 @@
-photoRecogApp.controller('navController', function navController($scope,$rootScope,$http,Upload,$location){
-        // $scope.isUserLoggedIn = $rootScope.isUserLoggedIn;
-        // $scope.fName = $rootScope.fName;
-        // $scope.lName = $rootScope.lName;
-        console.log('inside nav controller')
+photoRecogApp.controller('navController', function navController($window,$scope,$rootScope,$http,Upload,$location){
+    $rootScope.isUserLoggedIn = $window.sessionStorage.isUserLoggedIn;
+    $rootScope.fName = $window.sessionStorage.fName;
+    $rootScope.lName = $window.sessionStorage.lName;
+        console.log('inside nav controller');
+
         $scope.doLogout = function(){
             console.log('inside doLogout')
             $scope.isUserLoggedIn = false;
@@ -12,11 +13,15 @@ photoRecogApp.controller('navController', function navController($scope,$rootSco
 	  		    headers: { 'Content-Type': 'application/json' },
             }).then(function successCallback(response) {
 
+                    $window.sessionStorage.isUserLoggedIn = null;
+                    $window.sessionStorage.fName = null;
+                    $window.sessionStorage.lName = null;
+
         			console.log('response')
 
         			console.log(response.data.msg);
         			console.log(response.data.status);
-                    $rootScope.isUserLoggedIn = false;
+                    //$rootScope.isUserLoggedIn = false;
                 	if (response.data.status == "200") {
                 	    console.log('user signed out')
                             $location.path('/login');

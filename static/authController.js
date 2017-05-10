@@ -1,10 +1,16 @@
-photoRecogApp.controller('authController', function authController($scope,$rootScope,$http,$location,$timeout,$interval){
+photoRecogApp.controller('authController', function authController($scope,$rootScope,$window,$http,$location,$timeout,$interval){
 
-    $rootScope.isUserLoggedIn = false;
+    //$rootScope.isUserLoggedIn = false;
 
 	$scope.alertMessage = ""
     $scope.successMsg = false;
     $scope.errorMsg = false;
+
+    // $scope.data = {
+    //     isUserLoggedIn : false,
+    //     fName : '',
+    //     lName : ''
+    // }
 
 	console.log('inside authController');
 
@@ -28,10 +34,17 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
 
         	if (response.data.status == "200") {
         	    console.log('existing user ')
-        	    $rootScope.isUserLoggedIn = true;
+                $window.sessionStorage.isUserLoggedIn = true;
+                $window.sessionStorage.fName = response.data.msg.firstName;
+                $window.sessionStorage.lName = response.data.msg.lastName;
+                console.log($window.sessionStorage.Log);
+                console.log($window.sessionStorage.isUserLoggedIn)
+        	    $rootScope.isUserLoggedIn = $window.sessionStorage.isUserLoggedIn;
         	    $rootScope.studentId = $scope.studentId;
-		        $rootScope.fName = response.data.msg.firstName;
-		        $rootScope.lName = response.data.msg.lastName;
+		        $rootScope.fName = $window.sessionStorage.fName;
+		        $rootScope.lName = $window.sessionStorage.lName;
+                console.log($rootScope.fName)
+                console.log($rootScope.lName)
         	    console.log('student ID is : ')
         	    console.log($scope.studentId)
                 $scope.successMsg = true;
@@ -86,9 +99,14 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
         		$rootScope.studentId = $scope.studentId;
 
         	    console.log('new user registered ')
-        	    $rootScope.isUserLoggedIn = true;
-				$rootScope.fName = $scope.fName;
-				$rootScope.lName = $scope.lName;
+
+                $window.sessionStorage.isUserLoggedIn = true;
+                $window.sessionStorage.fName = $scope.fName;
+                $window.sessionStorage.lName = $scope.lName;
+                $rootScope.isUserLoggedIn = $window.sessionStorage.isUserLoggedIn;
+                $rootScope.studentId = $scope.studentId;
+                $rootScope.fName = $window.sessionStorage.fName;
+                $rootScope.lName = $window.sessionStorage.lName;
                 $scope.successMsg = true;
                 $scope.errorMsg = false;
                 $scope.alert = 'alert alert-success';

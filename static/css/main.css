@@ -1,8 +1,18 @@
 /*Layout*/
-body{
-    padding-top:70px;
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+#content {
+        padding: 0px 10% !important;
+        margin-top: 60px !important;
+        overflow-y: auto;
+        overflow-x: hidden;
+}
 .container{
     max-width: 1000px;
 }
@@ -164,10 +174,6 @@ a.my-tool-tip, a.my-tool-tip:hover, a.my-tool-tip:visited {
 #info{
     font-size:1em;
     height:10px;
-}
-
-.InnerClass{
-    margin-top: 20px;
 }
 
 .wrapper{
