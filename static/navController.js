@@ -1,7 +1,7 @@
 photoRecogApp.controller('navController', function navController($scope,$rootScope,$http,Upload,$location){
-        $scope.isUserLoggedIn = $rootScope.isUserLoggedIn;
-        $scope.fName = $rootScope.fName;
-        $scope.lName = $rootScope.lName;
+        // $scope.isUserLoggedIn = $rootScope.isUserLoggedIn;
+        // $scope.fName = $rootScope.fName;
+        // $scope.lName = $rootScope.lName;
         console.log('inside nav controller')
         $scope.doLogout = function(){
             console.log('inside doLogout')
@@ -19,17 +19,14 @@ photoRecogApp.controller('navController', function navController($scope,$rootSco
                     $rootScope.isUserLoggedIn = false;
                 	if (response.data.status == "200") {
                 	    console.log('user signed out')
-
-                		$timeout(function() {
-                            $location.path('/home');
+                            $location.path('/login');
                 			$location.replace();
-                        },2000);
                 	}
                 	else if (response.data.status == "404"){
                 	    console.log('not a registered user')
                 	    //alert("Student Id not found, please register");
                         $timeout(function() {
-                            $location.path('/');
+                            $location.path('/login');
                             $location.replace();
                         },2000);
                 	}

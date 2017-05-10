@@ -40,7 +40,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
         		$timeout(function() {
                     $location.path('/home');
         			$location.replace();
-                },2000);
+                },1000);
         	}
         	else if (response.data.status == "404"){
         	    console.log('not a registered user')
@@ -52,7 +52,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
                 $timeout(function() {
                     $location.path('/signUp');
                     $location.replace();
-                },2000);
+                },1000);
         	}
 
 	  	}, function errorCallback(response) {
@@ -95,7 +95,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
                 $timeout(function() {
                     $location.path('/upload');
                     $location.replace();
-                },2000);
+                },1000);
         	}
         	else if (response.data.status == "400"){
                 console.log('student is already registered....')
@@ -105,7 +105,7 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
                 $timeout(function() {
                     $location.path('/login');
                     $location.replace();
-                },2000);
+                },1000);
         	}
 
 	  	}, function errorCallback(response) {

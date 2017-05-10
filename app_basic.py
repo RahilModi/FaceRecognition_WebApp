@@ -85,6 +85,7 @@ def uploadPage():
     else:
         print 'user is not logged in'
         return redirect(url_for('loginPage'))
+        response['status'] = '400'
 
 @app.route("/logout",methods=["GET"])
 def logout():
@@ -96,7 +97,9 @@ def logout():
         print "clearing sesssion"
         session.clear()
         print "session cleared"
-        return redirect(url_for('defaultPage'))
+        response['status'] = "200"
+        response['msg'] ='user is not logged in error'
+        return jsonify(response)
     else:
         response['status'] = 404;
         response['msg'] ='user is not logged in error'
@@ -243,6 +246,12 @@ def compare(studentId):
     tobeComparedImagePathToSend = 'http://localhost:5000/static' + tobeComparedImagePath.split('static')[1]
 
     print originalImagePathToSend
+    confidenceToSend = min(confidences)
+    print "Done"
+    msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
+    msg['originalImagePathToSend'] = originalImagePathToSend
+    msg['tobeComparedImagePathToSend'] = tobeComparedImagePathToSend
+    msg['confidenceToSend'] = confidenceToSend
     response = {'status' : '','msg' : {}}
 
     if not confidences:
@@ -269,4 +278,4 @@ if __name__ == "__main__":
     # for document in curr:
     #     print(document);
 
-    app.run(port=5000, debug=True,host='0.0.0.0')
+    app.run(port=5000, debug=True)
