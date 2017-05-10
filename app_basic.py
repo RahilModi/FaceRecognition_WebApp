@@ -251,7 +251,7 @@ def compare(studentId):
         response['status'] = "400"
         return jsonify(response)
     else:
-        confidenceToSend = min(confidences)
+        confidenceToSend = round(min(confidences)/150,2)
         print "Done"
         print "found confidence " + str(confidenceToSend)
         msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
