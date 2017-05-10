@@ -1,3 +1,3 @@
 # Project
 
-This project is basically about the comparision of two images and calculating the confidence.
+This project is about the comparision of two images and giving the result ( in percentage) of how much similar are the two images.
