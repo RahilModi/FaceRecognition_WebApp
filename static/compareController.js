@@ -19,12 +19,16 @@ photoRecogApp.controller('compareController', function compareController($scope,
 			}
 		}).then(function (resp) {
 			console.log('Received response of uploadfile');
-            console.log(resp.data.msg);
+            console.log(resp.data);
+            if(resp.data.status == "400")
+                $scope.alertMessage = "Face couldn't be recognized. Please click again!"
+            else{
             $rootScope.originalfilePath = resp.data.msg.originalImagePathToSend;
             $rootScope.comparedfilePath = resp.data.msg.tobeComparedImagePathToSend;
             $rootScope.confidence = resp.data.msg.confidenceToSend;
 			$location.path("/complete");
 			$location.replace();
+            }
 		}, function (resp) {
 		}, function (evt) {
 			// var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
@@ -64,14 +68,16 @@ photoRecogApp.controller('compareController', function compareController($scope,
         }
 
         $scope.shoot = function(){
+            $scope.alertMessage = ""
 
-			context.drawImage(video,0,0,300,300);
-            image.setAttribute('src',canvas.toDataURL('image/png'));
-            var imgAsDataURL = canvas.toDataURL('image/png');
+            context.drawImage(video,0,0,300,300);
+            image.setAttribute('src',canvas.toDataURL('image/jpeg'));
+            var imgAsDataURL = canvas.toDataURL('image/jpeg');
             var dataURL = image.src;
             var blob = dataURItoBlob(dataURL);
-            console.log('blob created')
-            var file = new File([blob], 'test.png');
+            console.log('blob created---edi')
+            var file = new File([blob], 'test.jpg');
+            console.log('Before Close before');
             $scope.cameraOn = false;
             $scope.myfile = file
             console.log($scope.myfile)
@@ -80,7 +86,6 @@ photoRecogApp.controller('compareController', function compareController($scope,
 				 var track = camStream.getTracks()[0];
 				 track.stop();
 			}
-
         }
 
         function dataURItoBlob(dataURI) {
