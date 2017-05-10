@@ -1,4 +1,3 @@
-
 FROM ibotdotout/python-opencv:latest
 EXPOSE 5000
 COPY . /app
