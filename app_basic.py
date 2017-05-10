@@ -245,15 +245,6 @@ def compare(studentId):
     originalImagePathToSend = 'http://localhost:5000/static' + originalImagePath.split('static')[1]
     tobeComparedImagePathToSend = 'http://localhost:5000/static' + tobeComparedImagePath.split('static')[1]
 
-    print originalImagePathToSend
-    confidenceToSend = min(confidences)
-    print "Done"
-    msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
-    msg['originalImagePathToSend'] = originalImagePathToSend
-    msg['tobeComparedImagePathToSend'] = tobeComparedImagePathToSend
-    msg['confidenceToSend'] = confidenceToSend
-    response = {'status' : '','msg' : {}}
-
     if not confidences:
         print "len is zero"
         response = {'status' : '','msg' : {}}
@@ -278,4 +269,4 @@ if __name__ == "__main__":
     # for document in curr:
     #     print(document);
 
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True,host='0.0.0.0')
