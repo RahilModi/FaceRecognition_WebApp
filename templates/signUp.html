@@ -13,7 +13,7 @@
         <!-- Student ID-->
         <div class="form-group">
             <label class="sr-only">Student Id</label>
-            <input type="text" name="studentId" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required>
+            <input type="text" name="studentId" title="StudentId is of 9 digits only" data-placement="left" onclick="$(this).tooltip('hide')" onmouseleave="$(this).tooltip('hide')" onmouseenter="$(this).tooltip('show')" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required>
             <p class ="text-center" style="color:red" ng-show="signUpForm.studentId.$error.pattern">Only number are allowed</p>
             <!--<p class ="text-center" style="color:red" ng-show="signUpForm.studentId.$error.maxlength || signUpForm.studentId.$error.minlength">Id should be of 9 digits</p>-->
         </div>
@@ -38,5 +38,14 @@
             <a href="#login" class="text-center form-control"><strong>Already registered?</strong></a>
         </div>
 	</form>
+    <!-- Custom Messages -->
+    <!-- Rahil Modi-->
+    <div class="row text-center" ng-show="successMsg">
+        <div ng-class="alert">Successfully signed up and redirecting to upload...</div>
+    </div>
+    <div class="row text-center" ng-show="errorMsg">
+        <div ng-class="alert">Student Id is already registered Redirecting to login...</div>
+    </div>
+    <!-- Custom Messages -->
     </div>
 </div>

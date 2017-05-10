@@ -106,6 +106,9 @@ body{
 #imgInp{
     margin: auto;
 }
+#selectedImage{
+    margin-bottom: 10px;
+}
 
 #upload-pic{
     position : relative;
@@ -163,3 +166,19 @@ a.my-tool-tip, a.my-tool-tip:hover, a.my-tool-tip:visited {
     height:10px;
 }
 
+.InnerClass{
+    margin-top: 20px;
+}
+
+.wrapper{
+    max-width: 350px;
+    display: inline-flex;
+}
+
+#originalImage{
+    float:left;
+    margin-right: 5px;
+}
+#uploadedImage{
+
+}

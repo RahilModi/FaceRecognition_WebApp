@@ -1,22 +1,26 @@
-<div ng-controller="compareController">
+<div ng-controller="compareController" class="InnerClass">
     <div class="container text-center">
         <div id="upload-file">
         <h1>Upload an image from the media or take a picture to recognize</h1>
+        <br>
             <div ng-hide="cameraOn">
-                <img ngf-src="myfile"  class="rounded float-left" id="photo" width="300px" height="300px">
-                <input type="file" id="imgInp" class="btn-default" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
-                <a class="btn btn-sm btn-info" ng-click="openCamera()" data-icon="&#xe90f;" id="camera">click</a>
+                <img ngf-src="myfile"  class="rounded float-left" width="300px" height="300px" id="selectedImage">
+                <br>
+                <input type="file" id="imgInp" class="btn-default btn-lg" ngf-change="onChange($files)" ngf-select ng-model="myfile" name="attachement" accept="image/*" />
+                <br>
+                <a class="btn btn-lg btn-info" ng-click="openCamera()" data-icon="&#xe90f;" id="camera">click</a>
             </div>
             <div ng-show="cameraOn">
                 <div class="row text-center">
                          <video autoplay="true" id="videoElement"> </video>
                 </div>
+                <br>
                 <div class ="row text-center">
                         <button class="btn btn-md btn-info" ng-click="shoot()" id="capture">Take a shoot</button>
                 </div>
                 <hr/>
                 <div class="row text-center">
-                    <a class="btn btn-primary" ng-click="goBack()">Go back</a>
+                    <a class="btn btn-primary btn-md" ng-click="goBack()">Go back</a>
                 </div>
                 <div class="row text-center">
                     <canvas id="canvas" width="300" height="300"></canvas>
@@ -24,9 +28,8 @@
             </div>
             <div class="row" ng-hide="cameraOn">
                 <hr/>
-                <button class="btn btn-primary" type="submit" ng-click="uploadFile()">Upload</button>
+                <button class="btn btn-primary btn-lg" type="submit" ng-click="uploadFile()">Compare</button>
             </div>
         </div>
     </div>
 </div>
-

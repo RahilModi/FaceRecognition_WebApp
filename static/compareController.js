@@ -41,8 +41,8 @@ photoRecogApp.controller('compareController', function compareController($scope,
         var video = document.querySelector("#videoElement");
         var canvas = document.querySelector('#canvas');
         var context = canvas.getContext('2d');
-        var image = document.getElementById('photo');
-
+        var image = document.getElementById('selectedImage');
+		var camStream;
         $scope.openCamera = function(){
             console.log('camera button clicked')
             $scope.cameraOn = true;
@@ -54,6 +54,7 @@ photoRecogApp.controller('compareController', function compareController($scope,
             }
 
             function handleVideo(stream) {
+				camStream = stream;
                 video.src = window.URL.createObjectURL(stream);
             }
 
@@ -63,7 +64,8 @@ photoRecogApp.controller('compareController', function compareController($scope,
         }
 
         $scope.shoot = function(){
-            context.drawImage(video,0,0,300,250);
+
+			context.drawImage(video,0,0,300,300);
             image.setAttribute('src',canvas.toDataURL('image/png'));
             var imgAsDataURL = canvas.toDataURL('image/png');
             var dataURL = image.src;
@@ -73,6 +75,11 @@ photoRecogApp.controller('compareController', function compareController($scope,
             $scope.cameraOn = false;
             $scope.myfile = file
             console.log($scope.myfile)
+			if(camStream.active){
+				console.log('camStream active')
+				 var track = camStream.getTracks()[0];
+				 track.stop();
+			}
 
         }
 

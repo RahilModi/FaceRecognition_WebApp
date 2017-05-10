@@ -14,15 +14,14 @@
 	<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
 
     <script type="text/javascript" src="./static/ng-file-upload-shim.js"></script>
-        <script type="text/javascript" src="./static/ng-file-upload-shim.min.js"></script>
-        <script type="text/javascript" src="./static/ng-file-upload.js"></script>
-        <script type="text/javascript" src="./static/ng-file-upload.min.js"></script>
-        <script type="text/javascript" src="./static/routeConfig.js"></script>
-        <script type="text/javascript" src="./static/compareController.js"></script>
-        <script type="text/javascript" src="./static/authController.js"></script>
-        <script type="text/javascript" src="./static/uploadController.js"></script>
-        <script type="text/javascript" src="./static/completeController.js"></script>
-
+    <script type="text/javascript" src="./static/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="./static/ng-file-upload.js"></script>
+    <script type="text/javascript" src="./static/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="./static/routeConfig.js"></script>
+    <script type="text/javascript" src="./static/compareController.js"></script>
+    <script type="text/javascript" src="./static/authController.js"></script>
+    <script type="text/javascript" src="./static/uploadController.js"></script>
+    <script type="text/javascript" src="./static/completeController.js"></script>
     <script type="text/javascript" src="./static/homeController.js"></script>
     <script type="text/javascript" src="./static/navController.js"></script>
 
@@ -44,14 +43,12 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Home</a></li>
+                <li><a href="#/">Home</a></li>
                 <li><a ng-show = "isUserLoggedIn">{a fName a} {a lName a}</a></li>
                 <li><a href="#/login" ng-hide="isUserLoggedIn">Login</a></li>
                 <li><a href="#/signUp" ng-hide="isUserLoggedIn">SignUp</a></li>
-                <li><a class="btn" ng-click="doLogout()" ng-show="isUserLoggedIn">LogOut</a></li>
-                <li><p ng-show="isUserLoggedIn"> {a isUserLoggedIn a} </p></li>
+                <li><a class="btn" ng-click="doLogout()" ng-show="isUserLoggedIn">Logout</a></li>
             </ul>
-
         </div>
     </div>
 </div>
@@ -67,7 +64,7 @@
     </div>
     <div class="col-sm-4">
         <p>
-            <a class="btn btn-lg btn-info" href="https://github.com/sanketdhami/Project" data-icon="&#xe900;">View on GitHub</a>
+            <a class="btn btn-lg btn-info" target="_blank" href="https://github.com/sanketdhami/Project" data-icon="&#xe900;">View on GitHub</a>
         </p>
     </div>
     <div class="col-sm-4">

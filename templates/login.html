@@ -1,33 +1,37 @@
-<div ng-app = "photoRecogApp"  ng-controller="authController" class="container" id="login">
+<div ng-app="photoRecogApp" ng-controller="authController" class="container" id="login">
     <div class="col-sm-8 col-sm-offset-2">
 
-    <!-- PAGE HEADER -->
+        <!-- PAGE HEADER -->
         <div class="modal-header form-extra">
             <button type="button" class="close" ng-click="gotoHome()" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-center" >Login Page</h4>
+            <h4 class="modal-title text-center">Login Page</h4>
         </div>
         <img class="profile-img" src="./static/images/Login.png" alt="">
-	<form name="loginForm" ng-submit="authenticate()" novalidate>
-        <div class="form-group">
-            <label class="sr-only">Student Id</label>
-            <input type="text" name="studentId" class="form-control"placeholder="Student Id [9 digits]"  ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required />
-            <p class ="text-center" style="color:red" ng-show="loginForm.studentId.$error.pattern">Only number are allowed</p>
-            <!--<p class ="text-center" style="color:red" ng-show="loginForm.studentId.$error.maxlength || loginForm.studentId.$error.minlength">Id should be of 9 digits</p>-->
-        </div>
-        <!-- SUBMIT BUTTON -->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary form-control" ng-disabled="loginForm.$invalid">Submit</button>
-        </div>
-        <div class="alert">
-            {a alertMessage a}
-        </div>
+        <form name="loginForm" ng-submit="authenticate()" novalidate>
+            <div class="form-group">
+                <label class="sr-only">Student Id</label>
 
-        <div class="form-group panel-footer ">
-            <a href="#signUp" class="text-center form-control"><strong>New User?</strong></a>
+                <input type="text" title="StudentId is of 9 digits only" data-placement="left" onclick="$(this).tooltip('hide')" onmouseleave="$(this).tooltip('hide')" onmouseenter="$(this).tooltip('show')" name="studentId" class="form-control" placeholder="Student Id [9 digits]" ng-model="studentId" ng-minlength="9" ng-maxlength="9" ng-pattern="numOnlyRegex" required />
+                <p class="text-center" style="color:red" ng-show="loginForm.studentId.$error.pattern">Only number are allowed</p>
+                <!--<p class ="text-center" style="color:red" ng-show="loginForm.studentId.$error.maxlength || loginForm.studentId.$error.minlength">Id should be of 9 digits</p>-->
+            </div>
+            <!-- SUBMIT BUTTON -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary form-control" ng-disabled="loginForm.$invalid">Submit</button>
+            </div>
+
+            <div class="form-group panel-footer ">
+                <a href="#signUp" class="text-center form-control"><strong>New User?</strong></a>
+            </div>
+        </form>
+        <!-- Custom Messages -->
+        <!-- Rahil Modi-->
+        <div class="row text-center" ng-show="successMsg">
+            <div ng-class="alert">Successfully logged in Redirecting to home...</div>
         </div>
-	</form>
-    <br>
-    <br>
+        <div class="row text-center" ng-show="errorMsg">
+            <div ng-class="alert">Student Id is not found Redirecting to SignUp...</div>
+        </div>
+        <!-- Custom Messages -->
     </div>
 </div>
-

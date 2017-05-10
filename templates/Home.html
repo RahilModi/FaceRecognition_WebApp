@@ -4,10 +4,11 @@
             <h1>
                 Recognize Face By Uploading Image
             </h1>
-            
             <p>
-                <a class="btn btn-primary btn-lg" href="#login">Login</a>
-                <a class="btn btn-success btn-lg" href="#signUp">Sign Up</a>
+                <a class="btn btn-primary btn-lg" ng-hide="isUserLoggedIn" href="#/login">Login</a>
+                <a class="btn btn-success btn-lg" ng-hide="isUserLoggedIn" href="#/signUp">Sign Up</a>
+                <a class="btn btn-primary btn-lg" ng-show="isUserLoggedIn"href='#/upload'>Upload</a>
+                <a class="btn btn-success btn-lg" ng-show="isUserLoggedIn" href='#/compare'>Compare</a>
             </p>
         </div>
     <!-- End Jumbotron -->

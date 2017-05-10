@@ -47,6 +47,7 @@ def homePage():
 def comparePage():
     print "Arrived in index - Compare"
     if 'userId' in session:
+        print session['userId']
         print "found"
         return render_template("compare.html")
     else:
@@ -54,7 +55,6 @@ def comparePage():
         return redirect(url_for('loginPage'))
 
 @app.route("/login",methods=["GET"])
-
 def loginPage():
     print "Arrived in index - Login"
     return render_template("login.html")
@@ -68,27 +68,39 @@ def signUpPage():
 @app.route("/complete",methods=["GET"])
 def completePage():
     print "Arrived in index - complete"
-    return render_template("complete.html")
+    if 'userId' in session:
+        print session['userId']
+        return render_template("complete.html")
+    else:
+        print 'user is not logged in'
+        return redirect(url_for('loginPage'))
 
 @app.route("/upload",methods=["GET"])
 def uploadPage():
     print "Arrived in index - upload"
+    respons = {'status':'','msg':''}
     if 'userId' in session:
+        print session['userId']
         return render_template("upload.html")
     else:
+        print 'user is not logged in'
         return redirect(url_for('loginPage'))
 
 @app.route("/logout",methods=["GET"])
 def logout():
     print "Arrived in index - Logout"
+    response = {'status':'','msg':{}}
     if 'userId' in session:
+        print session['userId']
          # remove the userId from the session if it is there
         print "clearing sesssion"
         session.clear()
         print "session cleared"
-        return redirect(url_for('homePage'))
+        return redirect(url_for('defaultPage'))
     else:
-        print 'error'
+        response['status'] = 404;
+        response['msg'] ='user is not logged in error'
+        return jsonify(response)
 
 @app.route("/login",methods=["POST"])
 def index():

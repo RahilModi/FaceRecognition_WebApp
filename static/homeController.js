@@ -2,6 +2,7 @@
 photoRecogApp.controller('homeController', home);
 
 function home($scope,$location,$rootScope){
+    $scope.isUserLoggedIn = $rootScope.isUserLoggedIn;
         $location.path('/home');
         $location.replace();
 
@@ -18,4 +19,3 @@ function home($scope,$location,$rootScope){
 
     console.log('inside homeController');
 }
-
