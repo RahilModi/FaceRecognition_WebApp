@@ -6,39 +6,46 @@ photoRecogApp.controller('compareController', function compareController($window
 
 	console.log('inside compareController');
     $scope.fileExt;
+    $scope.myfile = null;
     $scope.cameraOn = false;
 	$scope.tempfile = null;
 	$scope.uploadFile = function(){
 		$scope.tempfile = null;
+
+        if($scope.myfile === null){
+            alert("Please upload/take photo first");
+        }else{
 		console.log('Inside uploadFile')
-		console.log($scope.myfile);
-		var userId = $rootScope.studentId;
-		var finalurl = '/compare/' + userId;
-		console.log('url is : ' + finalurl);
-        console.log('file in upload file')
-        console.log($scope.myfile);
-		$scope.upload = Upload.upload({
-			url: finalurl,
-			data: {
-				file: $scope.myfile
-			}
-		}).then(function (resp) {
-			console.log('Received response of uploadfile');
-            console.log(resp.data);
-            if(resp.data.status == "400")
-                $scope.alertMessage = "Face couldn't be recognized. Please click again!"
-            else{
-            $rootScope.originalfilePath = resp.data.msg.originalImagePathToSend;
-            $rootScope.comparedfilePath = resp.data.msg.tobeComparedImagePathToSend;
-            $rootScope.confidence = resp.data.msg.confidenceToSend;
-			$location.path("/complete");
-			$location.replace();
-            }
-		}, function (resp) {
-		}, function (evt) {
-			// var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-			// console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-		});
+            console.log($scope.myfile);
+            var userId = $rootScope.studentId;
+            var finalurl = '/compare/' + userId;
+            console.log('url is : ' + finalurl);
+            console.log('file in upload file')
+            console.log($scope.myfile);
+            $scope.upload = Upload.upload({
+                url: finalurl,
+                data: {
+                    file: $scope.myfile
+                }
+            }).then(function (resp) {
+                $scope.file = null;
+                console.log('Received response of uploadfile');
+                console.log(resp.data);
+                if(resp.data.status == "400")
+                    $scope.alertMessage = "Face couldn't be recognized. Please click again!"
+                else{
+                $rootScope.originalfilePath = resp.data.msg.originalImagePathToSend;
+                $rootScope.comparedfilePath = resp.data.msg.tobeComparedImagePathToSend;
+                $rootScope.confidence = resp.data.msg.confidenceToSend;
+                $location.path("/complete");
+                $location.replace();
+                }
+            }, function (resp) {
+            }, function (evt) {
+                // var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                // console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        }
 	};
 
          $scope.goBack = function(){

@@ -242,17 +242,8 @@ def compare(studentId):
 
     confidences = predict_confidence(originalImagePath,tobeComparedImagePath,studentId)
 
-    originalImagePathToSend = 'http://localhost:5000/static' + originalImagePath.split('static')[1]
-    tobeComparedImagePathToSend = 'http://localhost:5000/static' + tobeComparedImagePath.split('static')[1]
-
-    print originalImagePathToSend
-    confidenceToSend = min(confidences)
-    print "Done"
-    msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
-    msg['originalImagePathToSend'] = originalImagePathToSend
-    msg['tobeComparedImagePathToSend'] = tobeComparedImagePathToSend
-    msg['confidenceToSend'] = confidenceToSend
-    response = {'status' : '','msg' : {}}
+    originalImagePathToSend = 'http://ec2-34-208-241-189.us-west-2.compute.amazonaws.com:5000/static' + originalImagePath.split('static')[1]
+    tobeComparedImagePathToSend = 'http://ec2-34-208-241-189.us-west-2.compute.amazonaws.com:5000/static' + tobeComparedImagePath.split('static')[1]
 
     if not confidences:
         print "len is zero"
@@ -260,7 +251,7 @@ def compare(studentId):
         response['status'] = "400"
         return jsonify(response)
     else:
-        confidenceToSend = min(confidences)
+        confidenceToSend = round(min(confidences)/150,2)
         print "Done"
         print "found confidence " + str(confidenceToSend)
         msg = {'originalImagePathToSend' : '','tobeComparedImagePathToSend' : '','confidenceToSend' : ''}
@@ -278,4 +269,4 @@ if __name__ == "__main__":
     # for document in curr:
     #     print(document);
 
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True,host='0.0.0.0')

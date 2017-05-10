@@ -50,10 +50,20 @@ photoRecogApp.controller('authController', function authController($scope,$rootS
                 $scope.successMsg = true;
                 $scope.errorMsg = false;
                 $scope.alert = 'alert alert-success';
-        		$timeout(function() {
-                    $location.path('/home');
-        			$location.replace();
-                },1000);
+				var originalImage = response.data.msg.path.originalImage
+				if(originalImage === "")
+				{
+					$timeout(function() {
+                    	$location.path('/upload');
+        				$location.replace();
+               		},1000);
+				
+				}else{
+        			$timeout(function() {
+                    	$location.path('/home');
+        				$location.replace();
+                	},1000);
+				}
         	}
         	else if (response.data.status == "404"){
         	    console.log('not a registered user')
