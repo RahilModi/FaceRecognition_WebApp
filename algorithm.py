@@ -22,10 +22,10 @@ def predict_confidence(originalImagePath,tobeComparedImagePath,studentId):
 
     # Path to the Yale Dataset
     path = originalImagePath
-    
+
     # Call the get_images_and_labels function and get the face images and the
     # corresponding labels
-    
+
 
     image_paths = [path]
     print path
