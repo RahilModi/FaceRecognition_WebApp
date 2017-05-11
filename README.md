@@ -34,3 +34,26 @@ Face Recogniton App uses a number of open source projects to work properly:
 * [mLab's - Mongo DB] - mLab's MongoDB hosting platform is the fastest growing cloud Database-as-a-Service 
 
 
+### Docker
+Face Recogniton is very easy to install and deploy in a Docker container.
+
+By default, the Docker will expose port 80, so change this within the Dockerfile if necessary. When ready, simply use the Dockerfile to build the image.
+
+```sh
+cd Project
+docker build -t akhilesh1312/facerecog
+```
+This will create the Face Recognition image and pull in the necessary dependencies.
+
+Once done, run the Docker image and map the port to whatever you wish on your host. In this example, we simply map port 5000 of the host to port 5000 of the Docker (or whatever port was exposed in the Dockerfile as we have exposed 5000):
+
+```sh
+docker run -d -p 5000:5000 --name FaceRecognition akhilesh1312/facerecog
+```
+
+Verify the deployment by navigating to your server address in your preferred browser.
+
+```sh
+localhost:5000
+```
+
