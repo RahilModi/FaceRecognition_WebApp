@@ -5,15 +5,15 @@ This project is about the comparision of two images and giving the result ( in p
 
 # Contributors 
 
-- Tanmay  Bhatt - Worked on 
-- Rahil Modi -
-- Sanket Dhami -
-- Dhrumil Shah -
-- Akhilesh Deowanshi -
+- Tanmay  Bhatt - Worked on backend frontend integration , routing and hosted on AWS 
+- Rahil Modi - Worked on UI development , Web cam integration and Frontend Integration .
+- Sanket Dhami - Worked on Image comparison algorithm , storing information in database .
+- Dhrumil Shah - Worked on UI Development, routing and testing of the app.
+- Akhilesh Deowanshi - Worked on m-lab DB connection , image comaprison alogorithm & Dockerize the app 
 
 
 
-# New Features!
+# Features!
 
   - Create account and Upload Images . 
   - Click live images and compare with existing image .
